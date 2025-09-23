@@ -2,6 +2,7 @@ import { useState } from "react";
 import Welcome from "./components/Welcome";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";
+import LoginPanel from "./components/LoginPanel";
 
 import "./App.css";
 import Message from "./components/Message";
@@ -30,6 +31,8 @@ function App() {
           <Message />
         </div>
       ) : null}
+      <hr/>
+      <LoginPanel />
     </div>
   );
 }
