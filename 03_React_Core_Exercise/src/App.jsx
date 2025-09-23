@@ -1,9 +1,36 @@
-import { useState } from "react";
-import "./App.css";
+import { useState, useEffect } from "react";
 import TeamCard from "./components/TeamCard";
 import Scoreboard from "./components/Scoreboard";
+import QuoteBox from "./components/Quotebox";
+import "./App.css";
 
 function App() {
+  /* QuoteBox zadatak start */
+  const quotes = [
+    "Programiranje je umjetnost rješavanja problema.",
+    "Kod je humorista: kada ga moraš objasniti, loš je.",
+    "Jedina konstanta u tehnologiji je promjena.",
+    "React čini UI predvidljivim i modularnim.",
+  ];
+
+  const [currentQuote, setCurrentQuote] = useState("");
+
+  useEffect(() => {
+    generateRandomQuote();
+  }, []);
+
+  // Handler za novi citat
+  function handleNewQuote() {
+    generateRandomQuote();
+    setStatus(`Novi citat generiran`);
+  }
+
+  function generateRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    setCurrentQuote(quotes[randomIndex]);
+  }
+  /* QuoteBox zadatak end */
+
   // Centralni state: svi timove i status poruka
   const [teams, setTeams] = useState([
     { id: 1, emoji: "🐱", name: "Mačke", score: 0 },
@@ -41,18 +68,18 @@ function App() {
   let total = 0;
   let maxScore = 0;
 
-  for(const team of teams) {
+  for (const team of teams) {
     total += team.score;
-    if(team.score > maxScore)
-      maxScore = team.score;
+    if (team.score > maxScore) maxScore = team.score;
   }
 
   let leaderLabel = "Još nema glasova";
   let leaders = teams.filter((t) => t.score === maxScore && maxScore > 0);
 
-  if(maxScore > 0) {
-    leaderLabel = leaders.length == 1 ? `Vodi tim: ${leaders[0].name}` : "Izjednačeno";
-    console.log(leaders.length, leaderLabel)
+  if (maxScore > 0) {
+    leaderLabel =
+      leaders.length == 1 ? `Vodi tim: ${leaders[0].name}` : "Izjednačeno";
+    console.log(leaders.length, leaderLabel);
   }
 
   return (
@@ -72,7 +99,14 @@ function App() {
           </div>
         ))}
       </div>
-      <Scoreboard status={status} total={total} leaderLabel={leaderLabel}  onReset={resetAll}/>
+      <Scoreboard
+        status={status}
+        total={total}
+        leaderLabel={leaderLabel}
+        onReset={resetAll}
+      />
+      <hr/>
+      <QuoteBox quote={currentQuote} status={status} onNewQuote={handleNewQuote} />
     </>
   );
 }
