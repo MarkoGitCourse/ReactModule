@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TeamCard from "./components/TeamCard";
 import Scoreboard from "./components/Scoreboard";
 import QuoteBox from "./components/Quotebox";
+import TaskList from "./components/TaskList";
 import "./App.css";
 
 function App() {
@@ -82,8 +83,39 @@ function App() {
     console.log(leaders.length, leaderLabel);
   }
 
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState("");
+
+  function addTask() {
+    if (!newTask.trim()) return;
+
+    const task = { id: tasks.length + 1, text: newTask };
+    setTasks((prev) => [...prev, task]);
+    setNewTask("");
+  }
+
+  function deleteTask(id) {
+   if(confirm("Jel ste sigurni da želite izbrisati task")) {
+     setTasks(prev => prev.filter(t => t.id !== id));
+    }
+  }
+
   return (
     <>
+      <div>
+        <h2>Task List</h2>
+        <div>
+          <input
+            type="text"
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+          />
+          <button onClick={addTask}>
+            Dodaj task
+          </button>
+        </div>
+        <TaskList tasks={tasks} onDelete={deleteTask} />
+      </div>
       <div>
         {teams.map((team) => (
           <div key={team.id}>
@@ -105,8 +137,12 @@ function App() {
         leaderLabel={leaderLabel}
         onReset={resetAll}
       />
-      <hr/>
-      <QuoteBox quote={currentQuote} status={status} onNewQuote={handleNewQuote} />
+      <hr />
+      <QuoteBox
+        quote={currentQuote}
+        status={status}
+        onNewQuote={handleNewQuote}
+      />
     </>
   );
 }
