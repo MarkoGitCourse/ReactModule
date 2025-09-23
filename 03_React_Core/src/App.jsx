@@ -3,6 +3,7 @@ import Welcome from "./components/Welcome";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";
 import LoginPanel from "./components/LoginPanel";
+import UsersList from "./components/UsersList";
 
 import "./App.css";
 import Message from "./components/Message";
@@ -33,6 +34,11 @@ function App() {
       ) : null}
       <hr/>
       <LoginPanel />
+      <hr/>
+      <div>
+        <h2>List Rendering</h2>
+        <UsersList />
+      </div>
     </div>
   );
 }
