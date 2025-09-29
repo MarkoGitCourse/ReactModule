@@ -123,7 +123,10 @@ function App() {
       name: "korisnickoIme",
       label: "Korisničko ime",
       type: "text",
-      required: true,
+      required: {
+        enabled: true,
+        message: "Obavezno polje"
+      },
       pattern: {
         enabled: true,
         regex: "^[a-zA-Z0-9_.-]{4,16}$",
