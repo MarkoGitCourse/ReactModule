@@ -1,0 +1,199 @@
+/* Reset i zdravi defaulti za Vite + React */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #f4f6f9; /* ili što želiš */
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ključno: #root neka NE ograničava layout */
+#root {
+  margin: 0 auto;
+  min-height: 100%;
+  width: 100%;
+  max-width: none;   /* uklanja Viteov max-width */
+  margin: 0;         /* uklanja auto-centar s margina */
+  padding: 0;        /* uklanja default padding */
+  display: block;    /* bez grid/flex, ti kontroliraš unutar App-a */
+  overflow: visible; /* sigurno, da ništa ne bude “odrezano” */
+}
+
+/* Generalni container */
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Naslov */
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Lista studenata */
+.studentList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* Kartice studenata */
+.card {
+  border-radius: 15px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  color: #34495e;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Dinamičke boje kartica */
+.best {
+  border-top: 5px solid #27ae60;
+}
+
+.worst {
+  border-top: 5px solid #e74c3c;
+}
+
+.normal {
+  border-top: 5px solid #3498db;
+}
+
+.badge {
+  margin-top: 10px;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.inactive {
+  margin-top: 5px;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Delete button */
+.deleteBtn {
+  margin-top: 15px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: #c0392b;
+}
+
+/* Empty list */
+.empty {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+/* Forma */
+.form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  color: #2c3e50;
+}
+
+.form label {
+  font-size: 0.95rem;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.form input,
+.form select {
+    width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
+}
+
+/* Checkbox stil */
+.form input[type="checkbox"] {
+  width: auto;
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 8px;
+}
+
+/* Submit button */
+.form button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #3498db;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.form button:hover {
+  background: #2980b9;
+}
